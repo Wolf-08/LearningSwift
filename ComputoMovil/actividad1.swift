@@ -1,15 +1,21 @@
+/*Montecillo Sandoval Jose Alejandro 
+Computo Movil Actividad 1
+-Lista ordenada por nombre 
+-Lista ordenada por nombre y si tiene beca
+-Alumno con calificacion mayo 
+-Alumno con menor calificaciòn
+*/
 struct Alumno {
-
   let nombre: String?
   let edad: UInt8?
   let promedio: Double?
   let beca: Bool?
 }
+//Arreglo de Alumno 
+func resgitrarAlumnos(alumnosRegistrar: Int) -> ([Alumno], [Alumno]){
 var ArrayAlumno = [Alumno]()
-print("Cantidad de alumnos a registrar: ")
-if let alumnosRegistrar = Int(readLine()!){
-for _ in 1...alumnosRegistrar{
- 
+for index in 1...alumnosRegistrar{
+  print("Datos alumno: ",index)
   print("Nombre Alumno: " )
   let nombre = readLine()!
   print("Edad Alumno: ")
@@ -23,46 +29,98 @@ for _ in 1...alumnosRegistrar{
   let aux3 = readLine()!
   let tieneBeca = UInt8(aux3)
   if tieneBeca == 1 {
-   beca=true
-  }
+   beca=true }
   else if tieneBeca == 2{
-   beca=false
-  }
+   beca=false }
+
   let alumno = Alumno(nombre:nombre,edad:edad,promedio:promedio,beca:beca)
   ArrayAlumno.append(alumno) 
-} 
-
-let alumnosOrdenados = ArrayAlumno.sorted
-{
-  var ordenado = false 
-  if let primerElemento = $0.nombre, let segElemento = $1.nombre{
-    ordenado = primerElemento < segElemento
+  //ordenarAlumnos(ArrayAlumno: ArrayAlumno)
+  //calificaciones(ArrayAlumno: ArrayAlumno) 
   }
-  return ordenado
+
+  let alumnosOrdenados = ArrayAlumno.sorted{
+  $0.nombre! < $1.nombre! }
+  let ordenadosCalificacion = ArrayAlumno.sorted{
+  $0.promedio! < $1.promedio! }
+
+  return (alumnosOrdenados,ordenadosCalificacion)
 }
 
-print("Alumnos Ordenados alfabeticamente")
-for alumno in alumnosOrdenados{
-    print(alumno.nombre!) 
+// func ordenarAlumnos(ArrayAlumno: [Alumno]) ([Alumno]) {
+//   let alumnosOrdenados = ArrayAlumno.sorted{
+//   var ordenado = false 
+//   if let primerElemento = , let segElemento = {
+//     ordenado = primerElemento < segElemento
+//   }
+//   return ordenado
+//   }
+//   return(alumnosOrdenados)
+// }
+
+// func calificaciones(ArrayAlumno: [Alumno]) -> ([Alumno]){
+// let ordenadosCalificacion = ArrayAlumno.sorted{
+//   var ordenadoCal = false
+//   if let pE = $0.promedio , let sE = $1.promedio{
+//     ordenadoCal = pE < sE
+//   }
+//   return ordenadoCal}
+//   return(ordenadosCalificacion)
+// }
+
+func imprimirAlumnos(alumnosOrdenados: [Alumno]){
+  print("Alumnos Ordenados alfabeticamente")
+  for alumno in alumnosOrdenados{
+  print(alumno.nombre!) }
 }
-print("Alumnos con Beca: ")
-for alumno in alumnosOrdenados{
+func alumnosBeca (alumnosOrdenados: [Alumno]) {
+  print("Alumnos con Beca: ")
+  for alumno in alumnosOrdenados{
     if alumno.beca == true {
-      print(alumno.nombre!)
+      print(alumno.nombre!)} }
+}
+
+func imprimirCalificaciones(ordenadosCalificacion: [Alumno]){
+  print("Alumno con calificación mas baja \(ordenadosCalificacion[0].nombre!) : \(ordenadosCalificacion[0].promedio!)")
+  let ultimoElemento = ordenadosCalificacion.count - 1 
+  print("Alumno con calificación mas alta \(ordenadosCalificacion[ultimoElemento].nombre!) : \(ordenadosCalificacion[ultimoElemento].promedio!)")
+}
+
+func main() {
+  print("Programa para registro de Alumnos:\n")
+  print("Cantidad de alumnos a registrar: ")
+  if let alumnosRegistrar = Int(readLine()!){
+    let ordenados = resgitrarAlumnos(alumnosRegistrar:alumnosRegistrar)
+    print("Se resgistraron \(alumnosRegistrar) alumnos correctamente\n") 
+    print("¿Que datos quieres visualizar?\n")
+    print("Lista de Alumnos Ordenada Alfabeticamente (1)\n")
+    print("Lista de Alumnos con Beca Ordenada Alfabeticamente  (2)\n")
+    print("Almunno con menor y mayor Calificación (3)\n")
+    print("Salir (4)\n")
+
+  while let opcion = Int(readLine()!) {
+    guard opcion != 4 else {
+      break
     }
-}
-print("-------------------------------------")
-let ordenadosCalificacion = ArrayAlumno.sorted
-{
-  var ordenadoCal = false
-  if let pE = $0.promedio , let sE = $1.promedio{
-    ordenadoCal = pE < sE
+   switch opcion {
+    case 1:
+      imprimirAlumnos(alumnosOrdenados: ordenados.0)
+    case 2:
+      alumnosBeca(alumnosOrdenados: ordenados.0)
+    case 3:
+      imprimirCalificaciones(ordenadosCalificacion: ordenados.1)
+   default: break
+   }
   }
-  return ordenadoCal
+
+
+}else{
+  print("No se ingreso un numero alumnos a registrar") }
+
+
+
 }
 
-print("Alumno con calificación mas baja \(ordenadosCalificacion[0].nombre!) : \(ordenadosCalificacion[0].promedio!)")
+//Funcion pincipal 
+main()
 
-let ultimoElemento = ordenadosCalificacion.count - 1 
-print("Alumno con calificación mas alta \(ordenadosCalificacion[ultimoElemento].nombre!) : \(ordenadosCalificacion[ultimoElemento].promedio!)")
-}
