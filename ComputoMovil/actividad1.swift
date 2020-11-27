@@ -112,15 +112,9 @@ func main() {
    default: break
    }
   }
-
-
 }else{
   print("No se ingreso un numero alumnos a registrar") }
-
-
-
 }
-
 //Funcion pincipal 
 main()
 
