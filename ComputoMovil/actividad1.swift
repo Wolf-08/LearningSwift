@@ -90,7 +90,7 @@ func main() {
   print("Programa para registro de Alumnos:\n")
   print("Cantidad de alumnos a registrar: ")
   if let alumnosRegistrar = Int(readLine()!){
-    let ordenados = resgitrarAlumnos(alumnosRegistrar:alumnosRegistrar)
+     let ordenados = resgitrarAlumnos(alumnosRegistrar:alumnosRegistrar)
     print("Se resgistraron \(alumnosRegistrar) alumnos correctamente\n") 
     print("¿Que datos quieres visualizar?\n")
     print("Lista de Alumnos Ordenada Alfabeticamente (1)\n")
@@ -111,6 +111,11 @@ func main() {
       imprimirCalificaciones(ordenadosCalificacion: ordenados.1)
    default: break
    }
+    print("¿Que datos quieres visualizar?\n")
+    print("Lista de Alumnos Ordenada Alfabeticamente (1)\n")
+    print("Lista de Alumnos con Beca Ordenada Alfabeticamente  (2)\n")
+    print("Almunno con menor y mayor Calificación (3)\n")
+    print("Salir (4)\n")
   }
 }else{
   print("No se ingreso un numero alumnos a registrar") }
