@@ -17,5 +17,5 @@
   }// Potencia de un numero 
 
 
-  let resultado = potencia(value : 3)
+  let resultado = potencia(value : 1)
   print(resultado)
