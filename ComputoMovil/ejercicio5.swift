@@ -30,7 +30,7 @@ func MulArray(array: [Int]){
     var arrayAux = array
 
     for element in 0..<size{
-        var auxElement = arrayAux.remove(at: element)
+        let auxElement = arrayAux.remove(at: element)
         //print("Elemtno removido \(auxElement)")
         for value in 1...arrayAux.count{
             mul = mul * arrayAux[value-1]
