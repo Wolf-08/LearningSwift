@@ -30,8 +30,8 @@ func resgitrarAlumnos(alumnosRegistrar: Int) -> ([Alumno], [Alumno]){
     let tieneBeca = UInt8(aux3)
     if tieneBeca == 1 {
       beca=true }
-    else if tieneBeca == 2{
-      beca=false }
+    else iftieneBeca == 2{
+      beca=false } 
 
     let alumno = Alumno(nombre:nombre,edad:edad,promedio:promedio,beca:beca)
     ArrayAlumno.append(alumno) }
